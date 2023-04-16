@@ -111,16 +111,17 @@ int main(){
                 if (!pilavacia(&pila)){
                     printf("\nIngrese un valor para agregar a la pila\n");
                     scanf("%d", &num);
-                    ordenamientoPorSeleccion(&pila);
+                    ordenarPorInserccion(&pila);
                     insertarDatoEnPila(&pila,num);
+
                     mostrar(&pila);
                 } else {
                     printf("\nLa pila esta vacia, se van a cargar 15 elementos aleatorios\n");
                     cargarElementosCantidad(&pila, 15);
                     printf("\nIngrese un valor para agregar a la pila\n");
                     scanf("%d", &num);
-                    ordenamientoPorSeleccion(&pila);
-                    insertarDatoEnPila(&pila,num);
+                    ordenarPorInserccion(&pila);
+                    insertarDatoEnPila(&pila, num);
                     mostrar(&pila);
                 }
             break;
@@ -186,8 +187,7 @@ int main(){
                 mostrar(&pila);
             break;
         }
-        printf("\nPresione una tecla para continuar...\n");
-        getche();
+        system("PAUSE");
         system("CLS");
     } while (resp != 27);
     return 0;
@@ -299,6 +299,7 @@ void insertarDatoEnPila(Pila * pPila, int num){
     apilar(pPila, num);
 
     pasarDeUnaPilaAOtra(&auxPila,pPila);//Llenamos de nuevo la pila
+    return;
 
 }
 
@@ -315,7 +316,7 @@ void ordenarPorInserccion (Pila * pPila){
         insertarDatoEnPila(&auxPila, desapilar(pPila));
     }
 
-    pasarAOtraPilaConservarOrden(&auxPila, pPila);
+    pasarDeUnaPilaAOtra(&auxPila, pPila);
 }
 
 /*8. Hacer una función que sume y retorne los dos primeros elementos de una pila (tope y anterior),
